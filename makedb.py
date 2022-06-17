@@ -30,7 +30,7 @@ with sqlite3.connect('movies.db') as db:
     finally:
         cur.close()
 
-    with open('data/the-movies-dataset/movies_metadata.csv', 'r', newline='', encoding='utf-8') as f:
+    with open('movies_metadata.csv', 'r', newline='', encoding='utf-8') as f:
         r = csv.DictReader(f, dialect=csv.unix_dialect)
 
         for movie in r:
