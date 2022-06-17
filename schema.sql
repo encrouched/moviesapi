@@ -1,0 +1,33 @@
+
+CREATE TABLE movies(
+    id         INTEGER NOT NULL PRIMARY kEY AUTOINCREMENT,
+    title      TEXT,
+    year       INTEGER,
+    budget     REAL NOT NULL,
+    revenue    REAL NOT NULL,
+    popularity REAL NOT NULL
+);
+
+CREATE TABLE companies(
+    id   INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE movie_companies(
+    id         INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    movie_id   INTEGER NOT NULL REFERENCES movies(id) ON DELETE CASCADE,
+    company_id INTEGER NOT NULL REFERENCES companies(id) ON DELETE CASCADE,
+    UNIQUE(movie_id, company_id)
+);
+
+CREATE TABLE genres(
+    id   INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE movie_genres(
+    id       INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    movie_id INTEGER NOT NULL REFERENCES movie(id) ON DELETE CASCADE,
+    genre_id INTEGER NOT NULL REFERENCES genres(id) ON DELETE CASCADE
+);
+
